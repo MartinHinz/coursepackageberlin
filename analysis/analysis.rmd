@@ -14,11 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-<<<<<<< HEAD
 # Analyses
-=======
-# A better heading
->>>>>>> 2e8dc2a3d36d78dc3d4ec55f0197e3c9683e2e96
 
 ## First function
 
