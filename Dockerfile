@@ -8,6 +8,6 @@ COPY . /coursepackageberlin
 
 RUN . /etc/environment \
 
- && R -e "options(repos='$MRAN'); devtools::install('coursepackageberlin', dep=TRUE)" \
+ && R -e "options(repos='$MRAN'); install_github('MartinHinz/coursepackageberlin') \
 
  && R -e "rmarkdown::render('coursepackageberlin/analysis/analysis.rmd')"
