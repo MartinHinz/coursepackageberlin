@@ -1,0 +1,96 @@
+---
+title: "My elaborated analysis"
+author: "Martin Hinz"
+date: '`r format(Sys.Date())`'
+output: bookdown::pdf_document2
+lot: yes
+lof: yes
+bibliography: bib.bib
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# analysis.rmd
+
+## First function
+
+For doubling the number, you might use the function 'double_me'.
+
+```{r}
+library(coursepackageberlin)
+a <- 2
+double_me(a)
+
+```
+
+See this visual (\@ref(fig:chunk-label)):
+
+
+```{r chunk-label, echo = FALSE, fig.cap = 'A figure caption.'}
+test <- data.frame(x=1:100)
+test$y <- double_me(test$x)
+plot(test, type="l")
+
+```
+
+# Challenge
+
+1. simple table and plot
+2. add captions and crossref to those
+3. add bib file and cite
+4. Add second simple function to R/
+5. + test
+6. pass tests
+
+
+# Solution
+
+We simulate a number of characters:
+
+```{r }
+my_letters <- sample(letters, size = 500, replace = T)
+```
+
+now we table that
+
+```{r }
+table(my_letters)
+```
+
+and in more beautiful
+
+```{r letter-table}
+knitr::kable(as.data.frame(table(my_letters)), caption = "Letter frequency table")
+```
+and plot frequency
+
+```{r letter-plot, fig.cap = 'Letter frequency'}
+library(ggplot2)
+my_plot_letters <- as.data.frame(table(my_letters))
+ggplot(data=my_plot_letters, aes(x=my_letters, y=Freq)) + geom_bar(stat = "identity")
+```
+
+see solution table (\@ref(tab:letter-table)) and figure (\@ref(fig:letter-plot)). for more information consult [@R-base].
+
+Sampling letters can also be archieved by a function:
+
+
+```{r}
+my_new_letters <- sample_letters(50)
+```
+
+We can use that to make a lorem ipsum
+
+```{r lorem_ipsum, cache=T}
+x <- make_lorem_ipsum(100)
+x
+```
+
+and reuse it
+```{r lorem_ipsum_2, dependson="lorem_ipsum"}
+cat(paste(rep(x,10), collapse = "\n"))
+```
