@@ -10,4 +10,4 @@ RUN . /etc/environment \
 
  && R -e "options(repos='$MRAN'); devtools::install_github('MartinHinz/coursepackageberlin')" \
 
- && R -e "rmarkdown::render('coursepackageberlin/analysis/analysis.rmd')"
+ && R -e "rmarkdown::render('/coursepackageberlin/analysis/analysis.rmd')"
