@@ -96,6 +96,6 @@ cat(paste(rep(x,10), collapse = "\n"))
 
 
 use binford
-```{r lorem_ipsum_2, dependson="lorem_ipsum"}
+```{r binford, dependson="lorem_ipsum"}
 library(binford)
 ```
