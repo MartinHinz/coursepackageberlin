@@ -3,7 +3,7 @@
 coursepackageberlin
 ===================
 
-[![Travis-CI Build Status](https://travis-ci.org/MartinHinz/coursepackageberlin.svg?branch=master)](https://travis-ci.org/MartinHinz/coursepackageberlin) \* Turn on travis for your repo at <https://travis-ci.org/MartinHinz/coursepackageberlin>
+[![Travis-CI Build Status](https://travis-ci.org/MartinHinz/coursepackageberlin.svg?branch=master)](https://travis-ci.org/MartinHinz/coursepackageberlin)
 
 The goal of coursepackageberlin is to ...
 
