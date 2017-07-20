@@ -69,9 +69,8 @@ knitr::kable(as.data.frame(table(my_letters)), caption = "Letter frequency table
 and plot frequency
 
 ```{r letter-plot, fig.cap = 'Letter frequency'}
-library(ggplot2)
-my_plot_letters <- as.data.frame(table(my_letters))
-ggplot(data=my_plot_letters, aes(x=my_letters, y=Freq)) + geom_bar(stat = "identity")
+my_plot_letters <- table(my_letters)
+barplot(my_plot_letters)
 ```
 
 see solution table (\@ref(tab:letter-table)) and figure (\@ref(fig:letter-plot)). for more information consult [@R-base].
@@ -94,3 +93,6 @@ and reuse it
 ```{r lorem_ipsum_2, dependson="lorem_ipsum"}
 cat(paste(rep(x,10), collapse = "\n"))
 ```
+
+
+use binford

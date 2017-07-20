@@ -13,7 +13,6 @@ double_me <- function(x) {2+x}
 #' @param x the number of letters you would like to have
 #'
 #' @export
-#' @import dplyr
 sample_letters <- function(x) {sample(letters, size = x, replace = T)}
 
 #' Make a lorem ipsum
