@@ -8,7 +8,4 @@ context("sample_letters")
 
 test_that("the result from sample_letters is letters only", {
   expect_true(all(grepl("^[a-z]+$", sample_letters(100), perl = T) ))
-  expect_true(
-    sum(is.na(stringr::str_match(sample_letters(100), "^[a-z]+$")))==0
-  )
 })
