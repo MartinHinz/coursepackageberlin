@@ -105,7 +105,7 @@ library(binford)
 Load data
 
 ```{r}
-harran <- read.csv("../data/Sites_HarranPlain.txt")
+harran <- read.csv("Sites_HarranPlain.txt")
 ```
 
 Create point pattern from date, first transform from WGS Lat/Lng to something useful
@@ -159,7 +159,7 @@ plot(harran_kde)
 ```{r}
 
 library(raster)
-dem <- raster("../data/dem.tif")
+dem <- raster("dem.tif")
 image(dem)
 
 im_dem <- as.im(as.image.SpatialGridDataFrame(as(dem, "SpatialGridDataFrame")))
