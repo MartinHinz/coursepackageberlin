@@ -27,3 +27,4 @@ make_lorem_ipsum <- function(words_count) {
     paste(sample_letters(sample(1:10, size=1)),collapse ="")
   }),collapse = " ")
 }
+

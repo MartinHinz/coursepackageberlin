@@ -99,3 +99,95 @@ use binford
 ```{r binford, dependson="lorem_ipsum"}
 library(binford)
 ```
+
+
+# Point Pattern
+Load data
+
+```{r}
+harran <- read.csv("../data/Sites_HarranPlain.txt")
+```
+
+Create point pattern from date, first transform from WGS Lat/Lng to something useful
+
+```{r}
+library(spatstat)
+library(sp)
+
+coordinates(harran) <- ~X+Y
+
+proj4string(harran) <- CRS("+init=epsg:4326")
+
+harran <- spTransform(harran, CRSobj = CRS("+init=epsg:32637"))
+
+harran_ppp <- ppp(x = coordinates(harran)[,1],
+                  y = coordinates(harran)[,2],
+                  window = owin(xrange = bbox(harran)[1,],
+                  yrange = c(min(harran@coords[,2]),min(harran@coords[,2]+60000))))
+str(harran_ppp)
+```
+
+
+Plot the resulting point pattern
+
+```{r}
+plot(harran_ppp)
+```
+
+## challenge: delete dublicated points
+```{r}
+
+harran_ppp_cleaned <- harran_ppp[!duplicated.ppp(harran_ppp)]
+plot(harran_ppp_cleaned)
+```
+## nearest neighbour
+
+```{r}
+harran_ppp_nn <- nndist(harran_ppp_cleaned)
+hist(harran_ppp_nn)
+```
+
+## next challenge: kde
+
+```{r}
+harran_kde <- density.ppp(harran_ppp_cleaned, sigma = mean(harran_ppp_nn))
+plot(harran_kde)
+```
+
+## dem 
+
+```{r}
+
+library(raster)
+dem <- raster("../data/dem.tif")
+image(dem)
+
+im_dem <- as.im(as.image.SpatialGridDataFrame(as(dem, "SpatialGridDataFrame")))
+```
+## rhohat
+
+```{r}
+harran_rhohat <- rhohat(object = harran_ppp_cleaned, covariate = im_dem)
+plot(harran_rhohat)
+```
+
+## predicition
+```{r}
+diffrho
+
+plot(predict(harran_rhohat))
+
+diff_rho <- harran_kde - predict(harran_rhohat)
+
+
+```
+
+## compare to poisson
+
+```{r}
+density_orig <- harran_ppp_cleaned$n/area.owin(harran_ppp_cleaned$window)
+pois_ppp <- rpoispp(density_orig, win = harran_ppp_cleaned$window)
+
+plot(pois_ppp)
+```
+
